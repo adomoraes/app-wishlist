@@ -1,0 +1,100 @@
+{
+  "wishlistsItems": [
+    {
+      "id": "1",
+      "name": "Produto 1",
+      "status": "Ativo"
+    },
+    {
+      "id": "2",
+      "name": "Produto 2",
+      "status": "Ativo"
+    },
+    {
+      "id": "3",
+      "name": "Produto 3",
+      "status": "Ativo"
+    },
+    {
+      "id": "4",
+      "name": "Produto 4",
+      "status": "Ativo"
+    },
+    {
+      "id": "5",
+      "name": "Produto 5",
+      "status": "Ativo"
+    },
+    {
+      "id": "6",
+      "name": "Produto 6",
+      "status": "Ativo"
+    }
+  ],
+  "status": [
+    {
+      "id": "1",
+      "tipo": "Ativo"
+    },
+    {
+      "id": "2",
+      "tipo": "Inativo"
+    }
+  ],
+  "wishlists": [
+    {
+      "id": "1",
+      "name": "Ado Moraes",
+      "email": "adomoraes@gmail.com",
+      "vat": "2925184830",
+      "phoneNumber": "551193006858",
+      "wishlistItems": [
+        "Produto 1",
+        "Produto 2"
+      ],
+      "status": "Inativo"
+    },
+    {
+      "id": "3",
+      "name": "Ado Moraes",
+      "email": "adomoraes@gmail.com",
+      "vat": "2925184830",
+      "phoneNumber": "551193006858",
+      "wishlistItems": [
+        "Produto 1",
+        "Produto 2"
+      ],
+      "status": "Ativo"
+    },
+    {
+      "id": "0914",
+      "name": "Eduardo Orozimbo Moraes",
+      "email": "adomoraes@gmail.com",
+      "vat": "2925184830",
+      "phoneNumber": "1193006858",
+      "wishlistItems": [
+        "Produto 1",
+        "Produto 2"
+      ],
+      "status": "Ativo"
+    },
+    {
+      "id": "c8fb",
+      "name": null,
+      "email": null,
+      "vat": null,
+      "phoneNumber": null,
+      "wishlistItems": [],
+      "status": "Ativo"
+    },
+    {
+      "id": "9303",
+      "name": null,
+      "email": null,
+      "vat": null,
+      "phoneNumber": null,
+      "wishlistItems": [],
+      "status": "Ativo"
+    }
+  ]
+}
