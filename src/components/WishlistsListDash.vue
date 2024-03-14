@@ -116,6 +116,7 @@ export default {
         })
         await req.json()
         
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         this.message = 'Produto EXCLUIDO com sucesso'
         setTimeout(() => this.message = "", 3000)
       }
