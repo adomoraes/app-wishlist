@@ -1,7 +1,8 @@
 <template>
-    <div class="notifyContainer">
-        <p>{{ message }}</p>
-    </div>
+    <v-alert
+        :title="message"
+        type="success"
+    ></v-alert>
 </template>
 
 <script>
