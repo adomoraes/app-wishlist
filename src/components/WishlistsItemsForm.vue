@@ -1,17 +1,13 @@
 <template>
   <div class="mx-auto" style="width: 400px;">
-    
     <WishlistsNotify :message="message" v-show="message" />
     <v-card>
       <v-card-item>
         <v-card-title>Cadastrar Novo Produto</v-card-title>
-
         <v-card-subtitle>Insira um novo item para disponibilizar nas wishlists</v-card-subtitle>
       </v-card-item>
-
       <v-card-text>
         <form id="productForm" @submit.prevent="createProduct">
-
             <v-text-field 
               label="Nome do Produto"
               id="name"
@@ -23,12 +19,10 @@
       </form>
       </v-card-text>
     </v-card>
-
     <v-card>
       <v-toolbar color="blue">
         <v-toolbar-title><h4>Estoque de produtos para wishlist</h4></v-toolbar-title>
       </v-toolbar>
-
       <v-list 
         lines="one"
         v-for="(wishlistItem, index) in wishlistsItems" 
@@ -49,7 +43,6 @@
           <v-list-item-title>{{ wishlistItem.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
-        
     </v-card>
   </div>
 </template>
@@ -91,7 +84,6 @@ export default{
         setTimeout(() => this.message = "", 3000)
 
         this.getProducts()
-        
         this.name = ""
       },
       async getProducts(){
@@ -100,7 +92,6 @@ export default{
         const data = await req.json()
         this.wishlistsItems = data
         
-        console.log(this.wishlistsItems)
       },
       async getStatus(){
 
@@ -108,7 +99,6 @@ export default{
         const data = await req.json()
         this.status = data
 
-        //console.log(this.status)
       },
       async updatedWishlistItem(event, id){
         const option = event.target.value

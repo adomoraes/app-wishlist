@@ -82,7 +82,6 @@ export default {
       const data = await req.json()
       this.wishlists = data
       
-      //console.log(this.wishlists)
       this.getStatus()
     },
     async getStatus(){
@@ -91,11 +90,9 @@ export default {
     const data = await req.json()
     this.status = data
 
-    //console.log(this.status)
     },
     async updatedWishlist(event, id){
       const option = event.target.value
-      console.log(option)
       const dataJson = JSON.stringify({ status: option })
       const req = await fetch(`http://localhost:3000/wishlists/${id}`,{
           method: "PATCH",
