@@ -1,4 +1,3 @@
-```markdown
 # Wishlist App usando Vue.js e JSON-Server
 
 Para criar a aplicação utilizei o conceito de lista de desejos (wishlist) usando Vue.js como framework front-end, JSON-Server como backend simulado e Vuetify para estilização.
