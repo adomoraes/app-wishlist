@@ -1,34 +1,41 @@
 <template>
-  <div>
-    <h1>Cadastrar Wishlists Items</h1>
+  <div class="mx-auto" style="width: 400px;">
+    
     <WishlistsNotify :message="message" v-show="message" />
-    <form id="productForm" @submit="createProduct">
-      <div class="inputContainer">
-          <label for="name">Nome do Produto</label>
-          <input
-              type="text" 
+    <v-card>
+      <v-card-item>
+        <v-card-title>Cadastrar Novo Produto</v-card-title>
+
+        <v-card-subtitle>Insira um novo item para disponibilizar nas wishlists</v-card-subtitle>
+      </v-card-item>
+
+      <v-card-text>
+        <form id="productForm" @submit.prevent="createProduct">
+
+            <v-text-field 
+              label="Nome do Produto"
               id="name"
               name="name"
-              v-model="name"
-              placeholder="Digite o nome do produto"
-          />
-      </div>
-      <div class="inputContainer">
-          <input
-              type="submit"
-              class="inputSubmitButton"
-              value="Enviar dados"
-          />
-      </div>
-  </form>
-  <hr />
-  <h2>Items cadastrados</h2>
-  <div>
-          <ul>
-            <li 
-              v-for="(wishlistItem, index) in wishlistsItems" 
-              :key="index">{{ wishlistItem.name }}
+              v-model="name" 
+              variant="outlined">
+            </v-text-field>
+            <v-btn type="submit" rounded="xl" size="x-large" block>SALVAR</v-btn>
+      </form>
+      </v-card-text>
+    </v-card>
 
+    <v-card>
+      <v-toolbar color="blue">
+        <v-toolbar-title><h4>Estoque de produtos para wishlist</h4></v-toolbar-title>
+      </v-toolbar>
+
+      <v-list 
+        lines="one"
+        v-for="(wishlistItem, index) in wishlistsItems" 
+        :key="index">
+        <v-list-item value="{{ wishlistItem.name }}">
+          <template v-slot:append="{  }">
+            <v-list-item-action>
               <select name="status" class="status" @change="updatedWishlistItem($event, wishlistItem.id)">
                 <option value="">Selecione...</option>
                 <option v-for="s in status"
@@ -37,9 +44,13 @@
                 :value="s.tipo">{{ s.tipo }}</option>
               </select> 
               <button class="deleteBtn" @click="deleteWishlistItem(wishlistItem.id)">Excluir</button>
-            </li>
-          </ul>
-        </div>
+            </v-list-item-action>
+          </template>
+          <v-list-item-title>{{ wishlistItem.name }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+        
+    </v-card>
   </div>
 </template>
 
@@ -115,16 +126,15 @@ export default{
         this.getProducts()
       },
       async deleteWishlistItem(id){
-        const req = await fetch(`http://localhost:3000/wishlistsItems/${id}`,{
+        if(confirm("Tem certeza?")){
+          const req = await fetch(`http://localhost:3000/wishlistsItems/${id}`,{
             method: "DELETE"
-        })
-        await req.json()
-        
-        alert("Tem certeza?")
+          })
+          await req.json()
 
-        this.message = 'Produto EXCLUIDO com sucesso'
-        setTimeout(() => this.message = "", 3000)
-
+          this.message = 'Produto EXCLUIDO com sucesso'
+          setTimeout(() => this.message = "", 3000)
+        }
         this.getProducts()
       }
       
