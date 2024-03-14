@@ -1,65 +1,63 @@
 <template>
-  <div>
-    <h1>Cadastrar Wishlists</h1>
-    <div>
-      <WishlistsNotify :message="message" v-show="message" />
-      <form id="wishlistForm" @submit="createWishlist">
-        <div class="inputContainer">
-            <label for="name">Nome Completo</label>
-            <input
-                type="text" 
-                id="name"
-                name="name"
-                v-model="name"
-                placeholder="Digite o nome do cliente"
-            />
-        </div>
-        <div class="inputContainer">
-            <label for="email">Email</label>
-            <input
-                type="email" 
-                id="email"
-                name="email"
-                v-model="email"
-                placeholder="Digite o email do cliente"
-            />
-        </div>
-        <div class="inputContainer">
-            <label for="vat">CPF</label>
-            <input
-                type="text" 
-                id="vat"
-                name="vat"
-                v-model="vat"
-                placeholder="Digite o CPF do cliente"
-            />
-        </div>
-        <div class="inputContainer">
-            <label for="phoneNumber">Telefone</label>
-            <input
-                type="tel"
-                id="phoneNumber"
-                name="phoneNumber"
-                v-model="phoneNumber"
-                placeholder="Digite o telefone do cliente"
-            />
-        </div>
-        <div class="inputContainer">
-          <label for="wishlistItems">Escolha os produtos</label>
-          <div class="checkboxContainer" v-for="wishlistItem in wishlistsItemsData" :key="wishlistItem.id">
-            <input type="checkbox" name="wishlistItems" v-model="wishlistItems[wishlistItem.name]" :value="wishlistItem.name">
-            <span>{{ wishlistItem.name }}</span>
-          </div>
-        </div>
-        <div class="inputContainer">
-            <input
-                type="submit"
-                class="inputSubmitButton"
-                value="Enviar dados"
-            />
-        </div>
+  <div class="mx-auto" style="width: 400px;">
+    <WishlistsNotify :message="message" v-show="message" />
+    <v-card>
+      <v-card-item>
+        <v-card-title>Novo Cliente</v-card-title>
+        <v-card-subtitle>Insira os dados e crie uma wishlist personalizada</v-card-subtitle>
+      </v-card-item>
+      <v-card-text>
+        <form id="wishlistForm" @submit="createWishlist">
+            <v-text-field 
+              label="Nome"
+              id="name"
+              name="name"
+              v-model="name" 
+              variant="outlined">
+            </v-text-field>
+
+            <v-text-field 
+              label="Email"
+              id="email"
+              name="email"
+              v-model="email" 
+              variant="outlined">
+            </v-text-field>
+
+            <v-text-field 
+              label="CPF"
+              id="vat"
+              name="vat"
+              v-model="vat" 
+              variant="outlined">
+            </v-text-field>
+
+            <v-text-field 
+              label="Telefone"
+              id="phoneNumber"
+              name="phoneNumber"
+              v-model="phoneNumber" 
+              variant="outlined">
+            </v-text-field>
+            <h3>Selecione os produtos:</h3>
+            <v-list 
+            lines="one"
+            v-for="wishlistItem in wishlistsItemsData" 
+            :key="wishlistItem.id">
+              <v-list-item value="{{ wishlistItem.name }}">
+                <template v-slot:append="{  }">
+                  <v-list-item-action>
+                    <input type="checkbox" name="wishlistItems" v-model="wishlistItems[wishlistItem.name]" :value="wishlistItem.name">
+                  </v-list-item-action>
+                </template>
+                <v-list-item-title>{{ wishlistItem.name }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+
+            <v-btn type="submit" rounded="xl" size="x-large" block>SALVAR</v-btn>
       </form>
-    </div>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
