@@ -70,6 +70,6 @@ Implementei a lógica para manipular os dados recebidos do servidor, como exibir
 ## Considerações Finais
 
 - Teste a aplicação em vários navegadores e dispositivos para garantir uma experiência consistente.
-
-Este é um guia geral para resolver um teste front-end usando Vue.js com base no cenário de wishlist. Dependendo dos requisitos específicos do teste e da complexidade da aplicação, se faz necessário ajustar ou expandir essas etapas.
+- Validações de formulário não implementadas.
+- Validações de saneamento de dados não aplicadas.
 ```
