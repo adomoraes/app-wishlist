@@ -1,57 +1,50 @@
 <template>
-  <div id="wishlistsTable">
+    <h1>Dashboard Wishlists</h1>
     <WishlistsNotify :message="message" v-show="message" />
-    <div>
-      <div id="wishlistsTableHeading">
-        <div class="wishlistsId">
+    <v-table>
+    <thead>
+      <tr>
+        <th class="text-left">
           #
-        </div>
-        <div>
+        </th>
+        <th class="text-left">
           Nome
-        </div>
-        <div>
-          Email 
-        </div>
-        <div>
+        </th>
+        <th class="text-left">
+          Email
+        </th>
+        <th class="text-left">
           CPF
-        </div>
-        <div>
-          Telefone 
-        </div>
-        <div>
-          WishlistsItems
-        </div>
-        <div>
-          Acoes
-        </div>
-      </div>
-      <div id="wishlistsTableRows">
-        <div class="wishlistsTableRow" 
-          v-for="wishlist in wishlists" :key="wishlist.id"
-        >
-          <div class="wishlistsNumber">
-            {{ wishlist.id }}
-          </div>
-          <div>
-            {{ wishlist.name }}
-        </div>
-        <div>
-          {{ wishlist.email }}
-        </div>
-        <div>
-          {{ wishlist.vat }}
-        </div>
-        <div>
-          {{ wishlist.phoneNumber }}
-        </div>
-        <div>
+        </th>
+        <th class="text-left">
+          Telefone
+        </th>
+        <th class="text-left">
+          Produtos Selecionados
+        </th>
+        <th class="text-left">
+          Ações
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        v-for="wishlist in wishlists"
+        :key="wishlist.id"
+      >
+        <td>{{ wishlist.id }}</td>
+        <td>{{ wishlist.name }}</td>
+        <td>{{ wishlist.email }}</td>
+        <td>{{ wishlist.vat }}</td>
+        <td>{{ wishlist.phoneNumber }}</td>
+        <td>
           <ul>
             <li 
               v-for="(wishlistItem, index) in wishlist.wishlistItems" 
               :key="index">{{ wishlistItem }}</li>
           </ul>
-        </div>
-        <div>
+        </td>
+        <td>
           <select name="status" class="status" @change="updatedWishlist($event, wishlist.id)">
             <option value="">Selecione...</option>
             <option v-for="s in status"
@@ -60,11 +53,10 @@
             :value="s.tipo">{{ s.tipo }}</option>
           </select> 
           <button class="deleteBtn" @click="deleteWishlist(wishlist.id)">Cancelar</button>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </td>
+      </tr>
+    </tbody>
+  </v-table>
 </template>
 
 <script>
@@ -118,16 +110,15 @@ export default {
       this.getWishlists()
     },
     async deleteWishlist(id){
-      const req = await fetch(`http://localhost:3000/wishlists/${id}`,{
-          method: "DELETE"
-      })
-      await req.json()
-      
-      alert("Tem certeza?")
-
-      this.message = 'Produto EXCLUIDO com sucesso'
-      setTimeout(() => this.message = "", 3000)
-
+      if(confirm("Tem certeza?")){
+        const req = await fetch(`http://localhost:3000/wishlists/${id}`,{
+            method: "DELETE"
+        })
+        await req.json()
+        
+        this.message = 'Produto EXCLUIDO com sucesso'
+        setTimeout(() => this.message = "", 3000)
+      }
       this.getWishlists()
     }
   },

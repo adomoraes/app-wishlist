@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Dashboard Wishlists</h1>
     <WishlistsDash />
   </div>
 </template>
